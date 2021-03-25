@@ -29,7 +29,6 @@ clean_lambda() {
 
 package_lambda() {
     echo "packaging lambda"
-    clean_lambda
     mkdir $lambda_build_dir
     zip -j $lambda_build_dir/$lambda_target $lambda_source_dir/$lambda
 }
@@ -55,7 +54,8 @@ fi
 
 # package lambda
 if [[ ( $1 == "lambda") ]]
-then 
+then
+  clean_lambda
   package_lambda
 fi
 
