@@ -7,3 +7,5 @@
 
 # Lock files
 *.terraform.lock.hcl
+
+**/dependency-reduced-pom.xml
