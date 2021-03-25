@@ -1,8 +1,8 @@
 #!/bin/bash
 
-flink_app_source_dir=./app/kinesis-analytics-app
+flink_app_source_dir=./app/flink-app
 lambda_build_dir=build
-lambda_source_dir=./app/lambda_function
+lambda_source_dir=./app/lambda-function
 lambda=stocks.py
 lambda_target=stocks.zip
 
