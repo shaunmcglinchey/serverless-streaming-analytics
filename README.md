@@ -1,3 +1,5 @@
+# WIP
+
 # Client run instructions
 - python3 -m venv streaming_env
 - source streaming_env/bin/activate
