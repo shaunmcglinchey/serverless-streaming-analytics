@@ -8,7 +8,7 @@ lambda_target=stocks.zip
 
 display_usage() {
     echo "This script must be invoked with a supported action"
-    echo "available actions: [clean_flink flink clean_lambda lambda]"
+    echo "available actions: [build_all clean_all build_flink clean_flink build_lambda clean_lambda]"
     echo ""
 }
 
@@ -34,13 +34,29 @@ package_lambda() {
 }
 
 # clean flink app
+if [[ ( $1 == "clean_all") ]]
+then 
+  clean_flink_app
+  clean_lambda
+fi
+
+# package lambda
+if [[ ( $1 == "build_all") ]]
+then
+  clean_lambda
+  package_lambda
+  clean_flink_app
+  package_flink_app
+fi
+
+# clean flink app
 if [[ ( $1 == "clean_flink") ]]
 then 
   clean_flink_app
 fi
 
 # package flink app
-if [[ ( $1 == "flink") ]]
+if [[ ( $1 == "build_flink") ]]
 then 
   clean_flink_app
   package_flink_app
@@ -53,7 +69,7 @@ then
 fi
 
 # package lambda
-if [[ ( $1 == "lambda") ]]
+if [[ ( $1 == "build_lambda") ]]
 then
   clean_lambda
   package_lambda
@@ -62,7 +78,7 @@ fi
 # display usage
 if [[ $# -le 1 ]]
 then
-  if [[ $1 != 'clean_flink' && $1 != 'flink' && $1 != 'clean_lambda' && $1 != 'lambda' ]]
+  if [[ $1 != 'build_all' && $1 != 'clean_all' && $1 != 'clean_flink' && $1 != 'flink' && $1 != 'clean_lambda' && $1 != 'lambda' ]]
   then
     display_usage
     exit 1
